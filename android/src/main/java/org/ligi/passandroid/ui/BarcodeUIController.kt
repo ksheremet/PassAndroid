@@ -18,11 +18,11 @@ internal class BarcodeUIController(val rootView: View, private val barCode: BarC
     init {
 
         rootView.zoomIn.setOnClickListener {
-            setBarCodeSize(currentBarcodeWidth + passViewHelper.fingerSize)
+            setBarCodeSize(currentBarcodeWidth + passViewHelper.fingerSize!!)
         }
 
         rootView.zoomOut.setOnClickListener {
-            setBarCodeSize(currentBarcodeWidth - passViewHelper.fingerSize)
+            setBarCodeSize(currentBarcodeWidth - passViewHelper.fingerSize!!)
         }
 
         if (barCode != null) {
@@ -55,9 +55,9 @@ internal class BarcodeUIController(val rootView: View, private val barCode: BarC
 
     private fun setBarCodeSize(width: Int) {
 
-        rootView.zoomOut.visibility = if (width < passViewHelper.fingerSize * 2) INVISIBLE else VISIBLE
+        rootView.zoomOut.visibility = if (width < passViewHelper.fingerSize!! * 2) INVISIBLE else VISIBLE
 
-        if (width > passViewHelper.windowWidth - passViewHelper.fingerSize * 2) {
+        if (width > passViewHelper.windowWidth!! - passViewHelper.fingerSize!! * 2) {
             rootView.zoomIn.visibility = INVISIBLE
         } else {
             rootView.zoomIn.visibility = VISIBLE

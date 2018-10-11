@@ -9,8 +9,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AlertDialog
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AlertDialog
 import android.view.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -127,7 +127,7 @@ open class PassViewActivityBase : PassAndroidActivity() {
             }
 
             R.id.install_shortcut -> {
-                PassViewActivityBasePermissionsDispatcher.createShortcutWithCheck(this)
+                createShortcutWithPermissionCheck()
                 true
             }
 
@@ -143,7 +143,7 @@ open class PassViewActivityBase : PassAndroidActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        PassViewActivityBasePermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults)
+        onRequestPermissionsResult(requestCode, grantResults)
     }
 
     @NeedsPermission("com.android.launcher.permission.INSTALL_SHORTCUT")

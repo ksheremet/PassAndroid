@@ -2,14 +2,14 @@ package org.ligi.passandroid.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.text.util.LinkifyCompat
 import android.text.util.Linkify
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.text.util.LinkifyCompat
+import androidx.fragment.app.Fragment
 import com.github.salomonbrys.kodein.instance
 import kotlinx.android.synthetic.main.activity_pass_view.*
 import kotlinx.android.synthetic.main.barcode.*
@@ -57,10 +57,10 @@ class PassViewFragment : Fragment() {
         }
 
         barcode_img.setOnClickListener {
-            activity.startActivityFromClass(FullscreenBarcodeActivity::class.java)
+            activity?.startActivityFromClass(FullscreenBarcodeActivity::class.java)
         }
 
-        BarcodeUIController(view!!, currentPass.barCode, activity, passViewHelper)
+        BarcodeUIController(view!!, currentPass.barCode, activity!!, passViewHelper)
 
         processImage(logo_img_view, PassBitmapDefinitions.BITMAP_LOGO, currentPass)
         processImage(footer_img_view, PassBitmapDefinitions.BITMAP_FOOTER, currentPass)
@@ -68,7 +68,7 @@ class PassViewFragment : Fragment() {
         processImage(strip_img_view, PassBitmapDefinitions.BITMAP_STRIP, currentPass)
 
         if (map_container != null) {
-            if (!(currentPass.locations.isNotEmpty() && PassbookMapsFacade.init(activity))) {
+            if (!(currentPass.locations.isNotEmpty() && PassbookMapsFacade.init(activity!!))) {
                 @Suppress("PLUGIN_WARNING")
                 map_container.visibility = View.GONE
             }
@@ -82,7 +82,7 @@ class PassViewFragment : Fragment() {
             if (field.hide) {
                 backStrBuilder.append(field.toHtmlSnippet())
             } else {
-                val v = activity.layoutInflater.inflate(R.layout.main_field_item, front_field_container, false)
+                val v = activity!!.layoutInflater.inflate(R.layout.main_field_item, front_field_container, false)
                 val key = v.findViewById(R.id.key) as TextView
                 key.text = field.label
                 val value = v.findViewById(R.id.value) as TextView
@@ -104,7 +104,7 @@ class PassViewFragment : Fragment() {
         LinkifyCompat.addLinks(back_fields, Linkify.ALL)
 
         val passViewHolder = VerbosePassViewHolder(pass_card)
-        passViewHolder.apply(currentPass, passStore, activity)
+        passViewHolder.apply(currentPass, passStore, activity!!)
 
     }
 
@@ -126,10 +126,10 @@ class PassViewFragment : Fragment() {
         return rootView
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val passExtrasView = activity.layoutInflater.inflate(R.layout.pass_view_extra_data, passExtrasContainer, false)
+        val passExtrasView = activity?.layoutInflater?.inflate(R.layout.pass_view_extra_data, passExtrasContainer, false)
         passExtrasContainer.addView(passExtrasView)
     }
 }

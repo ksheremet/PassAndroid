@@ -2,7 +2,7 @@ package org.ligi.passandroid.model
 
 import android.content.Context
 import android.preference.PreferenceManager
-import android.support.v7.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate
 import org.ligi.passandroid.R
 import org.ligi.passandroid.R.string.preference_key_autolight
 import org.ligi.passandroid.R.string.preference_key_condensed

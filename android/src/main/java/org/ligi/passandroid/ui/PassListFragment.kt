@@ -1,16 +1,16 @@
 package org.ligi.passandroid.ui
 
 import android.os.Bundle
-import android.support.annotation.VisibleForTesting
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
-import android.support.v7.widget.helper.ItemTouchHelper.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.VisibleForTesting
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.ItemTouchHelper.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.salomonbrys.kodein.instance
 import kotlinx.android.synthetic.main.pass_recycler.view.*
 import org.greenrobot.eventbus.EventBus
@@ -38,7 +38,7 @@ class PassListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val inflate = inflater.inflate(R.layout.pass_recycler, container, false)
 
-        passStoreProjection = PassStoreProjection(passStore, arguments.getString(BUNDLE_KEY_TOPIC)!!, settings.getSortOrder())
+        passStoreProjection = PassStoreProjection(passStore, arguments!!.getString(BUNDLE_KEY_TOPIC)!!, settings.getSortOrder())
         adapter = PassAdapter(activity as AppCompatActivity, passStoreProjection)
 
         inflate.pass_recyclerview.adapter = adapter
@@ -68,9 +68,9 @@ class PassListFragment : Fragment() {
         val nextTopic = passStore.classifier.getTopicWithOffset(pass, if (swipeDir == LEFT) -1 else 1)
 
         if (nextTopic != null) {
-            moveWithUndoSnackbar(passStore.classifier, pass, nextTopic, activity)
+            moveWithUndoSnackbar(passStore.classifier, pass, nextTopic, activity as AppCompatActivity)
         } else {
-            MoveToNewTopicUI(activity, passStore, pass).show()
+            MoveToNewTopicUI(activity as AppCompatActivity, passStore, pass).show()
         }
     }
 
@@ -98,7 +98,7 @@ class PassListFragment : Fragment() {
 
         fun newInstance(topic: String) = PassListFragment().apply {
             arguments = Bundle()
-            arguments.putString(BUNDLE_KEY_TOPIC, topic)
+            arguments!!.putString(BUNDLE_KEY_TOPIC, topic)
         }
     }
 

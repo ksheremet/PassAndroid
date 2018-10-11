@@ -34,7 +34,7 @@ class LocationsMapFragment : SupportMapFragment() {
                 if (click_to_fullscreen)
                     map.setOnMapClickListener {
                         App.passStore.currentPass = base_activity!!.currentPass
-                        activity.startActivityFromClass(FullscreenMapActivity::class.java)
+                        (activity as PassViewActivityBase).startActivityFromClass(FullscreenMapActivity::class.java)
                     }
 
 
@@ -57,7 +57,7 @@ class LocationsMapFragment : SupportMapFragment() {
                     val i = Intent()
                     i.action = Intent.ACTION_VIEW
                     i.data = Uri.parse("geo:" + marker.position.latitude + "," + marker.position.longitude + "?q=" + marker.title)
-                    activity.startActivity(i)
+                    (activity as PassViewActivityBase).startActivity(i)
                 }
                 map.moveCamera(CameraUpdateFactory.newLatLngBounds(boundBuilder.build(), 100))
 

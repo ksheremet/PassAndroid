@@ -1,12 +1,12 @@
 package org.ligi.passandroid.ui
 
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.CardView
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
 import com.github.salomonbrys.kodein.instance
+import com.google.android.material.snackbar.Snackbar
 import org.ligi.kaxt.startActivityFromClass
 import org.ligi.passandroid.App
 import org.ligi.passandroid.R

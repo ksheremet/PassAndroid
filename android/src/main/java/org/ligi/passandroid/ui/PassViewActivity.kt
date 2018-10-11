@@ -2,11 +2,15 @@ package org.ligi.passandroid.ui
 
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.*
-import android.support.v4.view.ViewPager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
+import androidx.core.app.NavUtils
+import androidx.core.app.TaskStackBuilder
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_pass_view_base.*
 import org.ligi.kaxt.disableRotation
 import org.ligi.passandroid.R
@@ -95,7 +99,7 @@ class PassViewActivity : PassViewActivityBase() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         android.R.id.home -> {
             val upIntent = NavUtils.getParentActivityIntent(this)
-            if (NavUtils.shouldUpRecreateTask(this, upIntent)) {
+            if (NavUtils.shouldUpRecreateTask(this, upIntent!!)) {
                 TaskStackBuilder.create(this).addNextIntentWithParentStack(upIntent).startActivities()
                 finish()
             } else {

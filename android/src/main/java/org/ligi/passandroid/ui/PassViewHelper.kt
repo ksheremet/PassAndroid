@@ -8,9 +8,9 @@ import android.widget.LinearLayout
 import org.ligi.kaxt.getSizeAsPointCompat
 import org.ligi.passandroid.R
 
-class PassViewHelper(private val context: Activity) {
+class PassViewHelper(private val context: Activity?) {
 
-    val fingerSize by lazy { context.resources.getDimensionPixelSize(R.dimen.finger) }
+    val fingerSize by lazy { context?.resources?.getDimensionPixelSize(R.dimen.finger) }
 
     fun setBitmapSafe(imageView: ImageView, bitmap: Bitmap?) {
 
@@ -25,13 +25,13 @@ class PassViewHelper(private val context: Activity) {
 
     fun getLayoutParamsSoThatWeHaveMinimumAFingerInHeight(imageView: ImageView, bitmap: Bitmap)
             = imageView.layoutParams!!.apply {
-        height = if (bitmap.height < fingerSize) {
-            fingerSize
+        height = if (bitmap.height < fingerSize!!) {
+            fingerSize!!
         } else {
             LinearLayout.LayoutParams.WRAP_CONTENT
         }
     }
 
-    val windowWidth by lazy { context.windowManager.getSizeAsPointCompat().x }
+    val windowWidth by lazy { context?.windowManager?.getSizeAsPointCompat()?.x }
 
 }

@@ -1,11 +1,11 @@
 package org.ligi.passandroid.ui
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.Html
 import android.text.method.LinkMovementMethod
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_help.*
 import org.ligi.compat.HtmlCompat
 import org.ligi.passandroid.BuildConfig

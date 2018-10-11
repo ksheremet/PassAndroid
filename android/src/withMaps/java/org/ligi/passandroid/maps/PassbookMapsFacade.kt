@@ -2,7 +2,7 @@ package org.ligi.passandroid.maps
 
 
 import android.content.Context
-import android.support.v4.app.FragmentActivity
+import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import org.ligi.kaxt.startActivityFromClass

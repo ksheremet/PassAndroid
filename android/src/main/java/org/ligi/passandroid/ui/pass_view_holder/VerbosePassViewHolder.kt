@@ -1,8 +1,8 @@
 package org.ligi.passandroid.ui.pass_view_holder
 
 import android.app.Activity
-import android.support.v7.widget.CardView
 import android.view.View
+import androidx.cardview.widget.CardView
 import kotlinx.android.synthetic.main.edit.view.*
 import org.ligi.passandroid.model.PassStore
 import org.ligi.passandroid.model.pass.Pass
